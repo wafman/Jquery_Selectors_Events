@@ -1,0 +1,12 @@
+/****************
+* Main
+******/
+  main {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  main section {
+    float: left;
+    width: 30%;
+  }
