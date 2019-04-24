@@ -7,6 +7,19 @@
   }
 
   main section {
+    border: 1px solid black;
     float: left;
+    height: 15%;
+    padding: 1em;
     width: 30%;
+  }
+
+  main section h2, p {
+    text-align: center;
+  }
+
+  main section img {
+    border: 1px solid black;
+    height: 25vh;
+    width: 25vw;
   }
