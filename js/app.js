@@ -29,7 +29,19 @@ $.get('./data/page-1.json', data => {
 
     selectElement.append(`<option>${ data.keyword }</option>`);
   });
+});
 
-
-  // data.forEach(data => selectElement.append(`<option>Horny</option>`));
+// $('select').change((e) => ($("img").attr("alt") !== e.target.value) ? $("section").hide() : $("section").show());
+$("select").change((e) => {
+  $("section").each ((index, section) => {
+    // if (section.img.attr("alt") === e.target.value) {
+    //   $("section").show();
+    //   console.log(`EQUAL!!! ALT: ${ section.img.attr("alt") } || EVENT: ${ e.target.value }`);
+    // } else {
+    //   $("section").hide();
+    //   console.log(`NOT EQUAL!!! ALT: ${ section } || EVENT: ${ e.target.value }`); 
+    // }
+    console.log(index);
+    console.log(section.img.attr("alt"));
+  });
 });
