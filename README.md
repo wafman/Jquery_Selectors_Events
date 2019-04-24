@@ -2,11 +2,11 @@
 
 Number and name of feature: 1 - Displaying Images
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 hour
 
-Start time: _____
+Start time: 9:20am
 
-Finish time: _____
+Finish time: 
 
 Actual time needed to complete:
 
