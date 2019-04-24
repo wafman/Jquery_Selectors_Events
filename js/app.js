@@ -19,7 +19,7 @@ $.get('./data/page-1.json', data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
 
     template.append(`
-      <section>
+      <section class="${ img.keyword }">
       <h2>${img.title}</h2>
       <img src="${img.url}" alt="${img.keyword}">
       <p>${img.description}</p>
@@ -31,17 +31,4 @@ $.get('./data/page-1.json', data => {
   });
 });
 
-// $('select').change((e) => ($("img").attr("alt") !== e.target.value) ? $("section").hide() : $("section").show());
-$("select").change((e) => {
-  $("section").each ((index, section) => {
-    // if (section.img.attr("alt") === e.target.value) {
-    //   $("section").show();
-    //   console.log(`EQUAL!!! ALT: ${ section.img.attr("alt") } || EVENT: ${ e.target.value }`);
-    // } else {
-    //   $("section").hide();
-    //   console.log(`NOT EQUAL!!! ALT: ${ section } || EVENT: ${ e.target.value }`); 
-    // }
-    console.log(index);
-    console.log(section.img.attr("alt"));
-  });
-});
+$("select").change((e) => $("section").show().not(document.getElementsByClassName(`${ e.target.value }`)).hide());
