@@ -2,6 +2,8 @@
 
 console.log('javascript connected');
 
+let optionArr = [];
+
 function Img(url, title, description, keyword, horns) {
   this.url = url;
   this.title = title;
@@ -17,7 +19,7 @@ $.get('./data/page-1.json', data => {
 
   data.forEach(data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
-
+    optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
     template.append(`
       <section class="${ img.keyword }">
       <h2>${img.title}</h2>
@@ -26,9 +28,10 @@ $.get('./data/page-1.json', data => {
       </section>
       `
     );
-
-    selectElement.append(`<option>${ data.keyword }</option>`);
+  });
+  optionArr.forEach((element) => {
+    selectElement.append(`<option>${ element }</option>`);
   });
 });
 
-$("select").change((e) => $("section").show().not(document.getElementsByClassName(`${ e.target.value }`)).hide());
+$('select').change((e) => $('section').show().not(document.getElementsByClassName(`${ e.target.value }`)).hide());
