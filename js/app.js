@@ -20,14 +20,14 @@ $.get('./data/page-1.json', data => {
   data.forEach(data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
     optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
-    template.append(`
-      <section class="${ img.keyword }">
-      <h2>${img.title}</h2>
-      <img src="${img.url}" alt="${img.keyword}">
-      <p>${img.description}</p>
-      </section>
-      `
-    );
+    // template.append(`
+    //   <section class="${ img.keyword }">
+    //   <h2>${img.title}</h2>
+    //   <img src="${img.url}" alt="${img.keyword}">
+    //   <p>${img.description}</p>
+    //   </section>
+    //   `
+    // );
   });
   optionArr.forEach((element) => {
     selectElement.append(`<option>${ element }</option>`);
@@ -44,14 +44,14 @@ $('#page1').on('click', function(){
     data.forEach(data => {
       let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
       optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
-      template.append(`
-        <section class="${ img.keyword }">
-        <h2>${img.title}</h2>
-        <img src="${img.url}" alt="${img.keyword}">
-        <p>${img.description}</p>
-        </section>
-        `
-      );
+      // template.append(`
+      //   <section class="${ img.keyword }">
+      //   <h2>${img.title}</h2>
+      //   <img src="${img.url}" alt="${img.keyword}">
+      //   <p>${img.description}</p>
+      //   </section>
+      //   `
+      // );
     });
     optionArr.forEach((element) => {
       selectElement.append(`<option>${ element }</option>`);
@@ -76,14 +76,14 @@ $('#page2').on('click', function(){
     data.forEach(data => {
       let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
       optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
-      template.append(`
-        <section class="${ img.keyword }">
-        <h2>${img.title}</h2>
-        <img src="${img.url}" alt="${img.keyword}">
-        <p>${img.description}</p>
-        </section>
-        `
-      );
+      // template.append(`
+      //   <section class="${ img.keyword }">
+      //   <h2>${img.title}</h2>
+      //   <img src="${img.url}" alt="${img.keyword}">
+      //   <p>${img.description}</p>
+      //   </section>
+      //   `
+      // );
     });
     optionArr.forEach((element) => {
       selectElement.append(`<option>${ element }</option>`);

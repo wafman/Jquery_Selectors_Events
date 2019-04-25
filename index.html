@@ -29,7 +29,13 @@
       </div>
     </header>
     <main>
-      
+      <script id="horn-template" type="text/x-handlebars-template">
+        <section class="${ img.keyword }">
+          <h2>${img.title}</h2>
+          <img src="${img.url}" alt="${img.keyword}">
+          <p>${img.description}</p>
+        </section>
+      </script>
     </main>
     <footer>
       &copy; 2018 Code Fellows
