@@ -85,9 +85,6 @@ $('#page2').on('click', function(){
 
 //sort by horns, highest to lowest
 const sortByHorns = () => {
-  console.log("Hornsorting clicked");
-  console.log(pageOneHorns);
-
   $('#sortByTitle').prop('checked', false);
   pageOneHorns.sort((horn1, horn2) => horn1.horns - horn2.horns);
 
@@ -97,22 +94,13 @@ const sortByHorns = () => {
 
 
 //sort by title alphabetically
-const sortByTitle = (arr) => {
-  console.log(pageOneHorns);
-  console.log("Title sorting clicked");
+const sortByTitle = () => {
   $('#sortByHorns').prop('checked', false);
-  arr.sort((a, b) => {
-    if(a.toLowerCase() < b.toLowerCase()){
-      return -1;
-    }
-    if(a.toLowerCase() > b.toLowerCase()){
-      return 1;
-    }
-    if(a.toLowerCase() === b.toLowerCase()){
-      return 0;
-    }
-  });
-  return arr;
+
+  pageOneHorns.sort((horn1, horn2) => horn1.title.localeCompare(horn2.title));
+  
+  template.empty();
+  pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
 
 
