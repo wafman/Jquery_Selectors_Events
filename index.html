@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/module.css">
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
   </head>
   <body>
     <header>
@@ -27,7 +29,13 @@
       </div>
     </header>
     <main>
-      
+      <script id="horn-template" type="text/x-handlebars-template">
+        <section class="{{ keyword }}">
+          <h2>{{ title }}</h2>
+          <img src="{{ url }}" alt="{{ keyword }}">
+          <p>{{ description }}</p>
+        </section>
+      </script>
     </main>
     <footer>
       &copy; 2018 Code Fellows
