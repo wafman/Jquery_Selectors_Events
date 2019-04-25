@@ -16,6 +16,7 @@ $.get('./data/page-1.json', data => {
   console.log(data);
   let template = $('main');
   let selectElement = $('select');
+  const hornTemplate = Handlebars.compile($('#horn-template').text());
 
   data.forEach(data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
@@ -28,6 +29,7 @@ $.get('./data/page-1.json', data => {
     //   </section>
     //   `
     // );
+    template.append(hornTemplate(data));
   });
   optionArr.forEach((element) => {
     selectElement.append(`<option>${ element }</option>`);
