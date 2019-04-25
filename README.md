@@ -49,9 +49,9 @@ Actual time needed to complete: 35 minutes
 
 Number and name of feature: 5 - Templating
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 60 minutes
 
-Start time: 
+Start time: 10:01am
 
 Finish time: 
 
