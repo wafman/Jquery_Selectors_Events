@@ -3,6 +3,8 @@
 console.log('javascript connected');
 
 let optionArr = [];
+let source = $('#horn-template').text();
+const hornTemplate = Handlebars.compile(source);
 
 function Img(url, title, description, keyword, horns) {
   this.url = url;
@@ -11,8 +13,8 @@ function Img(url, title, description, keyword, horns) {
   this.keyword = keyword;
   this.horns = horns;
 }
-let source = $('#horn-template').text();
-const hornTemplate = Handlebars.compile(source);
+const pageOneHorns = [];
+const pageTwoHorns = [];
 
 $.get('./data/page-1.json', data => {
   console.log(data);
@@ -21,6 +23,8 @@ $.get('./data/page-1.json', data => {
 
   data.forEach(data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
+    pageOneHorns.push(img); 
+
     optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
 
     template.append(hornTemplate(img));
@@ -65,6 +69,8 @@ $('#page2').on('click', function(){
   
     data.forEach(data => {
       let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
+      pageTwoHorns.push(img); 
+
       optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
       
       template.append(hornTemplate(img));
@@ -78,17 +84,20 @@ $('#page2').on('click', function(){
 //functions
 
 //sort by horns, highest to lowest
-const sortByHorns = (arr) => {
+const sortByHorns = () => {
   console.log("Hornsorting clicked");
+  console.log(pageOneHorns);
 
   $('#sortByTitle').prop('checked', false);
-  arr.sort((a,b) => a.horns > b.horns);
-  return arr;
+  pageOneHorns.sort((horn1, horn2) => horn1.horns - horn2.horns);
+
+  
 }
 
 
 //sort by title alphabetically
 const sortByTitle = (arr) => {
+  console.log(pageOneHorns);
   console.log("Title sorting clicked");
   $('#sortByHorns').prop('checked', false);
   arr.sort((a, b) => {
