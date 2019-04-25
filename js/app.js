@@ -3,6 +3,8 @@
 console.log('javascript connected');
 
 let optionArr = [];
+let source = $('#horn-template').text();
+const hornTemplate = Handlebars.compile(source);
 
 function Img(url, title, description, keyword, horns) {
   this.url = url;
@@ -11,16 +13,19 @@ function Img(url, title, description, keyword, horns) {
   this.keyword = keyword;
   this.horns = horns;
 }
-let source = $('#horn-template').text();
-const hornTemplate = Handlebars.compile(source);
+const pageOneHorns = [];
+const pageTwoHorns = [];
+let sortedArray = [];
 
+let template = $('main');
 $.get('./data/page-1.json', data => {
   console.log(data);
-  let template = $('main');
   let selectElement = $('select');
 
   data.forEach(data => {
     let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
+    pageOneHorns.push(img); 
+
     optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
 
     template.append(hornTemplate(img));
@@ -31,6 +36,7 @@ $.get('./data/page-1.json', data => {
 });
 
 $('#page1').on('click', function(){
+  $('#template2').attr('id', 'template1');
   $('main').empty();
   $.get('./data/page-1.json', data => {
     console.log(data);
@@ -43,6 +49,7 @@ $('#page1').on('click', function(){
       
       template.append(hornTemplate(img));
     });
+    
     optionArr.forEach((element) => {
       selectElement.append(`<option>${ element }</option>`);
     });
@@ -57,6 +64,7 @@ $('select').change((e) => $('section').show().not(document.getElementsByClassNam
 
 $('#page2').on('click', function(){
   console.log('event listener works');
+  $('#template1').attr('id', 'template2');
   $('main').empty();
   $.get('./data/page-2.json', data => {
     console.log(data);
@@ -65,6 +73,8 @@ $('#page2').on('click', function(){
   
     data.forEach(data => {
       let img = new Img(data.image_url, data.title, data.description, data.keyword, data.horns);
+      pageTwoHorns.push(img); 
+
       optionArr.indexOf(data.keyword) === -1 ? optionArr.push(data.keyword) : console.log('keyword exists already');
       
       template.append(hornTemplate(img));
@@ -78,33 +88,40 @@ $('#page2').on('click', function(){
 //functions
 
 //sort by horns, highest to lowest
-const sortByHorns = (arr) => {
+const sortByHorns = () => {
   $('#sortByTitle').prop('checked', false);
-  arr.sort((a,b) => b.horns - a.horns);
-  return arr;
+  console.log(event);
+  
+  if($('#template1')){
+    sortedArray = pageOneHorns;
+  }
+  if($('#template2')){
+    sortedArray = pageTwoHorns;
+  }
+  sortedArray.sort((horn1, horn2) => horn1.horns - horn2.horns);
+  template.empty();
+  pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
 
 
 //sort by title alphabetically
-const sortByTitle = (arr) => {
+const sortByTitle = () => {
   $('#sortByHorns').prop('checked', false);
-  arr.sort((a, b) => {
-    if(a.toLowerCase() < b.toLowerCase()){
-      return -1;
-    }
-    if(a.toLowerCase() > b.toLowerCase()){
-      return 1;
-    }
-    if(a.toLowerCase() === b.toLowerCase()){
-      return 0;
-    }
-  });
-  return arr;
+  if($('#template1')){
+    sortedArray = pageOneHorns;
+  }
+  if($('#template2')){
+    sortedArray = pageTwoHorns;
+  }
+  pageOneHorns.sort((horn1, horn2) => horn1.title.localeCompare(horn2.title));
+  
+  template.empty();
+  pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
 
 
 
 //event listeners
-$('#sortByTitle').on('click', sortByTitle);
+$('#sortByTitle').change(sortByTitle);
 
-$('#sortByHorns').on('click', sortByHorns);
+$('#sortByHorns').change(sortByHorns);
