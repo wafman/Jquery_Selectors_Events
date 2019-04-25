@@ -53,9 +53,9 @@ Estimate of time needed to complete: 60 minutes
 
 Start time: 10:01am
 
-Finish time: 
+Finish time: 10:45am
 
-Actual time needed to complete: 
+Actual time needed to complete: 44 minutes
 
 
 Number and name of feature: 6 - Styling with Flexbox
