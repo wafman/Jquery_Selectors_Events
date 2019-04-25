@@ -16,9 +16,9 @@ function Img(url, title, description, keyword, horns) {
 const pageOneHorns = [];
 const pageTwoHorns = [];
 
+let template = $('main');
 $.get('./data/page-1.json', data => {
   console.log(data);
-  let template = $('main');
   let selectElement = $('select');
 
   data.forEach(data => {
@@ -91,7 +91,8 @@ const sortByHorns = () => {
   $('#sortByTitle').prop('checked', false);
   pageOneHorns.sort((horn1, horn2) => horn1.horns - horn2.horns);
 
-  
+  template.empty();
+  pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
 
 
