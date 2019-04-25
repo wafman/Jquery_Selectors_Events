@@ -31,4 +31,4 @@ $.get('./data/page-1.json', data => {
   });
 });
 
-$("select").change((e) => $("section").show().not(document.getElementsByClassName(`${ e.target.value }`)).hide());
+$('select').change((e) => $('section').show().not(document.getElementsByClassName(`${ e.target.value }`)).hide());
