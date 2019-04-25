@@ -29,7 +29,7 @@ $.get('./data/page-1.json', data => {
     //   </section>
     //   `
     // );
-    template.append(hornTemplate(data));
+    template.append(hornTemplate(img));
   });
   optionArr.forEach((element) => {
     selectElement.append(`<option>${ element }</option>`);

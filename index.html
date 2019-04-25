@@ -30,8 +30,8 @@
     </header>
     <main>
       <script id="horn-template" type="text/x-handlebars-template">
-        <section class="${ img.keyword }">
-          <h2>${img.title}</h2>
+        <section class="{{data.keyword}}">
+          <h2>{{ data.title }}</h2>
           <img src="${img.url}" alt="${img.keyword}">
           <p>${img.description}</p>
         </section>
