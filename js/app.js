@@ -105,6 +105,6 @@ const sortByTitle = (arr) => {
 
 
 //event listeners
-$('#sortByTitle').on('click', sortByTitle);
+$('#sortByTitle').change(sortByTitle());
 
-$('#sortByHorns').on('click', sortByHorns);
+$('#sortByHorns').change(sortByHorns());
