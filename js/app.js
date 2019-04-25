@@ -15,6 +15,7 @@ function Img(url, title, description, keyword, horns) {
 }
 const pageOneHorns = [];
 const pageTwoHorns = [];
+let sortedArray = [];
 
 let template = $('main');
 $.get('./data/page-1.json', data => {
@@ -35,6 +36,7 @@ $.get('./data/page-1.json', data => {
 });
 
 $('#page1').on('click', function(){
+  $('#template2').attr('id', 'template1');
   $('main').empty();
   $.get('./data/page-1.json', data => {
     console.log(data);
@@ -47,6 +49,7 @@ $('#page1').on('click', function(){
       
       template.append(hornTemplate(img));
     });
+    
     optionArr.forEach((element) => {
       selectElement.append(`<option>${ element }</option>`);
     });
@@ -61,6 +64,7 @@ $('select').change((e) => $('section').show().not(document.getElementsByClassNam
 
 $('#page2').on('click', function(){
   console.log('event listener works');
+  $('#template1').attr('id', 'template2');
   $('main').empty();
   $.get('./data/page-2.json', data => {
     console.log(data);
@@ -87,9 +91,14 @@ $('#page2').on('click', function(){
 const sortByHorns = () => {
   $('#sortByTitle').prop('checked', false);
   console.log(event);
-  let sortedArray = (event.path.innerText.includes('Page 1')) ? sortedArray = pageOneHorns : sortedArray = pageTwoHorns;
-
-  sortedArray.sort((horn1, horn2) => horn1.horns - horn2.horns)
+  
+  if($('#template1')){
+    sortedArray = pageOneHorns;
+  }
+  if($('#template2')){
+    sortedArray = pageTwoHorns;
+  }
+  sortedArray.sort((horn1, horn2) => horn1.horns - horn2.horns);
   template.empty();
   pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
@@ -98,7 +107,12 @@ const sortByHorns = () => {
 //sort by title alphabetically
 const sortByTitle = () => {
   $('#sortByHorns').prop('checked', false);
-
+  if($('#template1')){
+    sortedArray = pageOneHorns;
+  }
+  if($('#template2')){
+    sortedArray = pageTwoHorns;
+  }
   pageOneHorns.sort((horn1, horn2) => horn1.title.localeCompare(horn2.title));
   
   template.empty();
