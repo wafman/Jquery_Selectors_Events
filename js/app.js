@@ -79,14 +79,17 @@ $('#page2').on('click', function(){
 
 //sort by horns, highest to lowest
 const sortByHorns = (arr) => {
+  console.log("Hornsorting clicked");
+
   $('#sortByTitle').prop('checked', false);
-  arr.sort((a,b) => b.horns - a.horns);
+  arr.sort((a,b) => a.horns > b.horns);
   return arr;
 }
 
 
 //sort by title alphabetically
 const sortByTitle = (arr) => {
+  console.log("Title sorting clicked");
   $('#sortByHorns').prop('checked', false);
   arr.sort((a, b) => {
     if(a.toLowerCase() < b.toLowerCase()){
@@ -105,6 +108,6 @@ const sortByTitle = (arr) => {
 
 
 //event listeners
-$('#sortByTitle').change(sortByTitle());
+$('#sortByTitle').change(sortByTitle);
 
-$('#sortByHorns').change(sortByHorns());
+$('#sortByHorns').change(sortByHorns);
