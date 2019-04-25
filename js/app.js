@@ -86,8 +86,10 @@ $('#page2').on('click', function(){
 //sort by horns, highest to lowest
 const sortByHorns = () => {
   $('#sortByTitle').prop('checked', false);
-  pageOneHorns.sort((horn1, horn2) => horn1.horns - horn2.horns);
+  console.log(event);
+  let sortedArray = (event.path.innerText.includes('Page 1')) ? sortedArray = pageOneHorns : sortedArray = pageTwoHorns;
 
+  sortedArray.sort((horn1, horn2) => horn1.horns - horn2.horns)
   template.empty();
   pageOneHorns.forEach((img) => template.append(hornTemplate(img)));
 }
